@@ -28,19 +28,13 @@
       width: 100%;
     }
   </style>
+
   <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.18/"></script>
   <script>
 
   require([
-    "esri/config",
-    "esri/Map",
-    "esri/views/MapView",
-
-    "esri/Graphic",
-    "esri/layers/GraphicsLayer"
-
-    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+    "esri/config","esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLayer"], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
 
   esriConfig.apiKey = "AAPK1b667b7ea0c146389c2a3ca2c2c7a49ah_8L0KmrZgOmUlOSUAL6NKwysRI-T3zJv3vm6qv20AkgmLA-WYEESKGaWjrmwkZL";
 
@@ -54,6 +48,37 @@
     zoom: 13,
     container: "viewDiv"
  });
+
+
+ // ################ POINT ################
+
+ // Graphics layer - map can have multiple graphics layers in one map to show different things
+ const graphicsLayer = new GraphicsLayer();
+ map.add(graphicsLayer);
+
+ // Used to create the point at a location
+ const point = { //Create a point
+    type: "point",
+    longitude: -118.80657463861,
+    latitude: 34.0005930608889
+ };
+ // used to define the look of the symbol or marker
+ const simpleMarkerSymbol = {
+    type: "simple-marker",
+    color: [226, 119, 40],  // Orange for the fill
+    outline: {
+        color: [255, 255, 255], // White for the outline
+        width: 1
+    }
+ };
+ // Point graphic is then created
+ const pointGraphic = new Graphic({
+    geometry: point,
+    symbol: simpleMarkerSymbol
+ });
+ graphicsLayer.add(pointGraphic);
+
+ 
 
  });
 </script>
