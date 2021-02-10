@@ -3,38 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Tutorial 2: Display points, lines, and polygons</title>
-
+  <title>ArcGIS API for JavaScript Tutorials: Add a point, line, and polygon</title>
   <style>
-    html, 
-    body, 
-    .header{
-        margin-top:1vw;
-        text-align: center;
-      }
-
-    .link{
-      font-size: 20pt;
-      text-decoration: none;
-      text-align: center;
-      color:green;
-      margin-bottom: 2vw;
-    }
-
-    #viewDiv {
+    html, body, #viewDiv {
       padding: 0;
       margin: 0;
       height: 100%;
       width: 100%;
     }
   </style>
-
   <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.18/"></script>
   <script>
 
   require([
-    "esri/config","esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLayer"], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
+
+    "esri/Graphic",
+    "esri/layers/GraphicsLayer"
+
+    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
 
   esriConfig.apiKey = "AAPK1b667b7ea0c146389c2a3ca2c2c7a49ah_8L0KmrZgOmUlOSUAL6NKwysRI-T3zJv3vm6qv20AkgmLA-WYEESKGaWjrmwkZL";
 
@@ -49,47 +39,94 @@
     container: "viewDiv"
  });
 
-
- // ################ POINT ################
-
- // Graphics layer - map can have multiple graphics layers in one map to show different things
  const graphicsLayer = new GraphicsLayer();
  map.add(graphicsLayer);
 
- // Used to create the point at a location
  const point = { //Create a point
     type: "point",
     longitude: -118.80657463861,
     latitude: 34.0005930608889
  };
- // used to define the look of the symbol or marker
  const simpleMarkerSymbol = {
     type: "simple-marker",
-    color: [226, 119, 40],  // Orange for the fill
+    color: [226, 119, 40],  // Orange
     outline: {
-        color: [255, 255, 255], // White for the outline
+        color: [255, 255, 255], // White
         width: 1
     }
  };
- // Point graphic is then created
+
  const pointGraphic = new Graphic({
     geometry: point,
     symbol: simpleMarkerSymbol
  });
  graphicsLayer.add(pointGraphic);
 
- 
+    // Create a line geometry
+ const polyline = {
+    type: "polyline",
+    paths: [
+        [-118.821527826096, 34.0139576938577], //Longitude, latitude
+        [-118.814893761649, 34.0080602407843], //Longitude, latitude
+        [-118.808878330345, 34.0016642996246]  //Longitude, latitude
+    ]
+ };
+ const simpleLineSymbol = {
+    type: "simple-line",
+    color: [226, 119, 40], // Orange
+    width: 2
+ };
+
+ const polylineGraphic = new Graphic({
+    geometry: polyline,
+    symbol: simpleLineSymbol
+ });
+ graphicsLayer.add(polylineGraphic);
+
+ // Create a polygon geometry
+ const polygon = {
+    type: "polygon",
+    rings: [
+        [-118.818984489994, 34.0137559967283], //Longitude, latitude
+        [-118.806796597377, 34.0215816298725], //Longitude, latitude
+        [-118.791432890735, 34.0163883241613], //Longitude, latitude
+        [-118.79596686535, 34.008564864635],   //Longitude, latitude
+        [-118.808558110679, 34.0035027131376]  //Longitude, latitude
+    ]
+ };
+
+ const simpleFillSymbol = {
+    type: "simple-fill",
+    color: [227, 139, 79, 0.8],  // Orange, opacity 80%
+    outline: {
+        color: [255, 255, 255],
+        width: 1
+    }
+ };
+
+ const popupTemplate = {
+    title: "{Name}",
+    content: "{Description}"
+ }
+ const attributes = {
+    Name: "Graphic",
+    Description: "I am a polygon"
+ }
+
+ const polygonGraphic = new Graphic({
+    geometry: polygon,
+    symbol: simpleFillSymbol,
+
+    attributes: attributes,
+    popupTemplate: popupTemplate
+
+ });
+ graphicsLayer.add(polygonGraphic);
 
  });
 </script>
 </head>
-  <body>
-    <div>
-    <h1 class="header"> Tutorial 2: Display points, lines and polygons</h1>
-    <a class="link" href="index.html"> Return to Week 3 Home</a>
-    </div>
-    
-    <!-- use the id of the map to call in the map function-->
-    <div id="viewDiv"></div>
-  </body>
+<body>
+  <div id="viewDiv"></div>
+</body>
 </html>
