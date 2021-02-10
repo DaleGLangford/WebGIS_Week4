@@ -118,16 +118,17 @@
     }
  };
 
- const popupTemplate = {
+ // Add a pop-up for the polygon layer on a click
+ const popupTemplate = { // defines the pop-up with empty attributes
     title: "{Name}",
     content: "{Description}"
  }
- const attributes = {
+ const attributes = { // applies the attributes to the pop-up
     Name: "Graphic",
     Description: "I am a polygon"
  }
 
- const polygonGraphic = new Graphic({
+ const polygonGraphic = new Graphic({ // creates the poly-graphic pop-up
     geometry: polygon,
     symbol: simpleFillSymbol,
 
