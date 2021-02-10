@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -26,12 +27,15 @@
       }
     </style>
 
+    <!-- ArcGIS API uses Asynchronous Module Definition (AMD)-->
     <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.18/"></script>
 
     <script>
+      // reference the Map and Mapview modules
       require(["esri/config","esri/Map", "esri/views/MapView"], function (esriConfig,Map, MapView) {
 
+        // Config and Map creates you map
         // add your own API key in here
         esriConfig.apiKey = "AAPK1b667b7ea0c146389c2a3ca2c2c7a49ah_8L0KmrZgOmUlOSUAL6NKwysRI-T3zJv3vm6qv20AkgmLA-WYEESKGaWjrmwkZL";
 
@@ -39,6 +43,7 @@
           basemap: "arcgis-topographic" // Basemap layer service
         });
 
+        // View controls how the map is displayed
         const view = new MapView({
           map: map,
           center: [-118.805, 34.027], // Longitude, latitude
@@ -47,14 +52,16 @@
         });
 
       });
+
     </script>
 
   </head>
   <body>
-    <h1 class="header"> Tutorial 1: Unmodified</h1>
+    <div>
+    <h1 class="header"> Tutorial 1: Display a Map</h1>
     <a class="link" href="index.html"> Return to Week 3 Home</a>
-  </body>
-  <body>
+    </div>
+
     <!-- use the id of the map to call in the map function-->
     <div id="viewDiv"></div>
   </body>

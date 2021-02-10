@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Tutorial 2: Display points, lines, and polygons</title>
+
+  <style>
+    html, 
+    body, 
+    .header{
+        margin-top:1vw;
+        text-align: center;
+      }
+
+    .link{
+      font-size: 20pt;
+      text-decoration: none;
+      color:green;
+      margin-bottom: 2vw;
+    }
+
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.18/"></script>
+  <script>
+
+  require([
+    "esri/config",
+    "esri/Map",
+    "esri/views/MapView",
+
+    "esri/Graphic",
+    "esri/layers/GraphicsLayer"
+
+    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+
+  esriConfig.apiKey = "AAPK1b667b7ea0c146389c2a3ca2c2c7a49ah_8L0KmrZgOmUlOSUAL6NKwysRI-T3zJv3vm6qv20AkgmLA-WYEESKGaWjrmwkZL";
+
+  const map = new Map({
+    basemap: "arcgis-topographic" //Basemap layer service
+  });
+
+  const view = new MapView({
+    map: map,
+    center: [-118.80500,34.02700], //Longitude, latitude
+    zoom: 13,
+    container: "viewDiv"
+ });
+
+ });
+</script>
+</head>
+  <body>
+    <div>
+    <h1 class="header"> Tutorial 2: Display points, lines and polygons</h1>
+    <a class="link" href="index.html"> Return to Week 3 Home</a>
+    </div>
+    
+    <!-- use the id of the map to call in the map function-->
+    <div id="viewDiv"></div>
+  </body>
+</html>
