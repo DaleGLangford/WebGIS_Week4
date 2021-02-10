@@ -32,6 +32,7 @@
     <script>
       require(["esri/config","esri/Map", "esri/views/MapView"], function (esriConfig,Map, MapView) {
 
+        // add your own API key in here
         esriConfig.apiKey = "AAPK1b667b7ea0c146389c2a3ca2c2c7a49ah_8L0KmrZgOmUlOSUAL6NKwysRI-T3zJv3vm6qv20AkgmLA-WYEESKGaWjrmwkZL";
 
         const map = new Map({
@@ -42,7 +43,7 @@
           map: map,
           center: [-118.805, 34.027], // Longitude, latitude
           zoom: 13, // Zoom level
-          container: "viewDiv" // Div element
+          container: "viewDiv" // Div element ID
         });
 
       });
@@ -54,6 +55,7 @@
     <a class="link" href="index.html"> Return to Week 3 Home</a>
   </body>
   <body>
+    <!-- use the id of the map to call in the map function-->
     <div id="viewDiv"></div>
   </body>
 </html>
