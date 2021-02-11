@@ -5,7 +5,20 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>ArcGIS API for JavaScript Tutorials: Find places</title>
   <style>
-  html, body, #viewDiv {
+  html, body, 
+  .header{
+        margin-top:1vw;
+        text-align: center;
+      }
+
+    .link{
+      font-size: 20pt;
+      text-decoration: none;
+      text-align: center;
+      color:green;
+      margin-bottom: 2vw;
+    }
+  #viewDiv {
   padding: 0;
   margin: 0;
   height: 100%;
@@ -119,6 +132,12 @@
 
   </head>
   <body>
+    <div>
+    <h1 class="header"> Tutorial 3: Locator Tutorial</h1>
+    <a class="link" href="index.html"> Return to Week 3 Home</a>
+    </div>
+
+    <!-- use the id of the map to call in the map function-->
     <div id="viewDiv"></div>
   </body>
 </html>
