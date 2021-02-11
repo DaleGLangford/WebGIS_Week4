@@ -18,12 +18,9 @@
   <script>
 
   require([
-    "esri/config",
-    "esri/Map",
-    "esri/views/MapView",
-    "esri/tasks/Locator",
-    "esri/Graphic"
-    ], function(esriConfig,Map, MapView, Locator, Graphic) {
+    "esri/config","esri/Map","esri/views/MapView",
+    // task locator and graphic are the important new things
+    "esri/tasks/Locator","esri/Graphic"], function(esriConfig,Map, MapView, Locator, Graphic) {
 
 
     esriConfig.apiKey = "AAPK1b667b7ea0c146389c2a3ca2c2c7a49ah_8L0KmrZgOmUlOSUAL6NKwysRI-T3zJv3vm6qv20AkgmLA-WYEESKGaWjrmwkZL";
@@ -35,16 +32,19 @@
     const view = new MapView({
       container: "viewDiv",
       map: map,
-      center: [18.9553, 69.6492], //Longitude, latitude
+      center: [-79.38049, 43.65425], //Longitude, latitude 43.65425156957171, -79.38049135898038
       zoom: 13
     });
 
-    const places = ["Choose a place type...", "Parks and Outdoors", "Coffee shop", "Gas station", "Food", "Hotel"];
+    // for list of all the places you can search:
+    // https://developers.arcgis.com/rest/geocode/api-reference/geocoding-category-filtering.htm#ESRI_SECTION1_502B3FE2028145D7B189C25B1A00E17B
+    const places = ["Choose your poison...", "Parks and Outdoors", "Coffee shop", "Gas station", "Food", "Hotel", "Pizza", "Seafood"];
 
+    // create the select element and style it 
     const select = document.createElement("select","");
       select.setAttribute("class", "esri-widget esri-select");
-      select.setAttribute("style", "width: 175px; font-family: 'Avenir Next W00'; font-size: 1em");
-
+      select.setAttribute("style", "width: 200px; font-family: 'sansserif'; font-size: 1em");
+    // creates the list within the select statement and lists all attributes in the places const
     places.forEach(function(p){
       const option = document.createElement("option");
       option.value = p;
@@ -52,13 +52,16 @@
       select.appendChild(option);
     });
 
+    // Places the select in the top right
     view.ui.add(select, "top-right");
 
+    // Accesses the geocoding services which lets you use the 'words' in the places const
    const locator = new Locator({
         url: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"
     });
 
-   // Find places and add them to the map
+   // Creat the find places function and use it to find places and add them to the map using the keywords set out in the places constant
+   // have a pop up with the info
    function findPlaces(category, pt) {
     locator.addressToLocations({
       location: pt,
@@ -67,10 +70,12 @@
       outFields: ["Place_addr", "PlaceName"]
     })
 
+    // clear the previous pop-ups
     .then(function(results) {
       view.popup.close();
       view.graphics.removeAll();
 
+      // for each result this will set the style
       results.forEach(function(result){
         view.graphics.add(
           new Graphic({
@@ -78,7 +83,7 @@
             geometry: result.location, // Point returned
             symbol: {
              type: "simple-marker",
-             color: "#000000",
+             color: "#eb34e5",
              size: "12px",
              outline: {
                color: "#ffffff",
