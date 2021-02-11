@@ -55,16 +55,16 @@
  const graphicsLayer = new GraphicsLayer();
  map.add(graphicsLayer);
 
- // ######### POINTS #########
+ // ######### BEAUMARIS #########
 
  // Beaumaris
- const point = { 
+ const pointB = { 
     type: "point",
     longitude: -4.0898278477192385,
     latitude: 53.26479948589513
  };
 
- const simpleMarkerSymbol = { // sets symbology for point
+ const simpleMarkerSymbolB = { // sets symbology for point
     type: "simple-marker",
     color: [226, 119, 40],  // Orange
     outline: {
@@ -74,24 +74,97 @@
  };
  // use this to set the point graphic
   // Add a pop-up for the polygon layer on a click
-  const popupTemplate = { // defines the pop-up with empty attributes
+  const popupTemplateB = { // defines the pop-up with empty attributes
     title: "{Name}",
     content: "{Description}"
  }
- const attributes = { // applies the attributes to the pop-up
+ const attributesB = { // applies the attributes to the pop-up
     Name: "Beaumaris Castle",
     Description: "Located in Angelsey Wales and built the 13th century as part of King Edward I's campain in Wales"
  } 
  
- const pointGraphic = new Graphic({
-    geometry: point,
-    symbol: simpleMarkerSymbol, 
-    attributes: attributes,
-    popupTemplate: popupTemplate
+ const pointGraphicB = new Graphic({
+    geometry: pointB,
+    symbol: simpleMarkerSymbolB, 
+    attributes: attributesB,
+    popupTemplate: popupTemplateB
  });
 
- graphicsLayer.add(pointGraphic); // add the newly created point to the graphics layer
+ graphicsLayer.add(pointGraphicB); // add the newly created point to the graphics layer
 
+  // ######### PEMBROKE #########
+
+ // Pembroke
+ const pointP = { 
+    type: "point",
+    longitude: -4.920699794292731,
+    latitude: 51.67691032173594
+ };
+
+ const simpleMarkerSymbolP = { // sets symbology for point
+    type: "simple-marker",
+    color: [226, 119, 40],  // Orange
+    outline: {
+        color: [255, 255, 255], // White
+        width: 1
+    }
+ };
+ // use this to set the point graphic
+  // Add a pop-up for the polygon layer on a click
+  const popupTemplateP = { // defines the pop-up with empty attributes
+    title: "{Name}",
+    content: "{Description}"
+ }
+ const attributesP = { // applies the attributes to the pop-up
+    Name: "Pembroke Castle",
+    Description: "Remains of 12th/13th century castle built by William Marshall. Birthplace of Henry VII."
+ } 
+ 
+ const pointGraphicP = new Graphic({
+    geometry: pointP,
+    symbol: simpleMarkerSymbolP, 
+    attributes: attributesP,
+    popupTemplate: popupTemplateP
+ });
+
+ graphicsLayer.add(pointGraphicP); // add the newly created point to the graphics layer
+
+  // ######### CARDIFF #########
+
+ // Cardiff
+ const pointC = { 
+    type: "point",
+    longitude: -3.18119916859806,
+    latitude: 51.48217180051163
+ };
+
+ const simpleMarkerSymbolC = { // sets symbology for point
+    type: "simple-marker",
+    color: [226, 119, 40],  // Orange
+    outline: {
+        color: [255, 255, 255], // White
+        width: 1
+    }
+ };
+ // use this to set the point graphic
+  // Add a pop-up for the polygon layer on a click
+  const popupTemplateC = { // defines the pop-up with empty attributes
+    title: "{Name}",
+    content: "{Description}"
+ }
+ const attributesC = { // applies the attributes to the pop-up
+    Name: "Cardiff Castle",
+    Description: "Victorian gothic fantasy style built on the remains of Norman and Roman ruins"
+ } 
+ 
+ const pointGraphicC = new Graphic({
+    geometry: pointC,
+    symbol: simpleMarkerSymbolC, 
+    attributes: attributesC,
+    popupTemplate: popupTemplateC
+ });
+
+ graphicsLayer.add(pointGraphicC); // add the newly created point to the graphics layer
 
  });
  
