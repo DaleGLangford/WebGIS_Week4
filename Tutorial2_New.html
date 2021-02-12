@@ -192,6 +192,50 @@
 
  graphicsLayer.add(pointGraphicC); // add the newly created point to the graphics layer
 
+  // ######### POLYGON #########
+  const polygon = { // sets the polygon geometry
+    type: "polygon",
+    rings:           [
+            [-3.548583984375,52.348763181988105],
+            [-3.6117553710937496,52.38901106223458],
+            [-3.7298583984375004,52.3605059352529],
+            [-3.7600708007812504,52.29504228453735],
+            [-3.5101318359375,52.118312197617946],
+            [-3.3316040039062496,52.303440474272755],
+            [-3.34259033203125,52.3688917060255],
+            [-3.4552001953125, 52.3923633970718],
+            [-3.548583984375,52.348763181988105]
+          ]
+ };
+
+ const simpleFillSymbol = { // sets the polygon symbology
+    type: "simple-fill",
+    color: [254, 27, 156, 0.8],  // Pink, opacity 80%
+    outline: {
+        color: [254, 27, 156],
+        width: 1
+    }
+ };
+
+ // Add a pop-up for the polygon layer on a click
+ const popupTemplate = { // defines the pop-up with empty attributes
+    title: "{Name}",
+    content: "{Description}"
+ }
+ const attributes = { // applies the attributes to the pop-up
+    Name: "Hank the Heart",
+    Description: "Yeah yeah yeah, I am a lovely pink heart.... "
+ }
+
+ const polygonGraphic = new Graphic({ // creates the poly-graphic pop-up
+    geometry: polygon,
+    symbol: simpleFillSymbol,
+    attributes: attributes,
+    popupTemplate: popupTemplate
+
+ });
+ graphicsLayer.add(polygonGraphic);
+
  });
  
 </script>
@@ -200,6 +244,7 @@
     <div>
     <h1 class="header"> Three Pretty Fancy Castles</h1>
     <p> The points below represent Beaumaris, Pembroke, and Cardiff Castles. Click on each point to learn more!</p>
+    <p>No Valentines Day themes! Bad! Bad, bad, bad!..... okay have a heart...</p>
     <p><a class="link" href="index.html"> Return to Week 3 Home</a></p>
     </div>
 
